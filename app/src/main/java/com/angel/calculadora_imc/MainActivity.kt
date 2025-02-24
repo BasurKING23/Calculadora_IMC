@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var heightEditText: EditText
     lateinit var weightEditText: EditText
     lateinit var calButton: Button
-    lateinit var resultTextView:TextView
+    lateinit var resultTextView: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,16 +35,16 @@ class MainActivity : AppCompatActivity() {
         calButton = findViewById(R.id.calButton)
         resultTextView = findViewById(R.id.resultTextView)
 
-            calButton.setOnClickListener {
-                val height = heightEditText.text.toString().toFloat()
-                val weight = weightEditText.text.toString().toFloat()
+        calButton.setOnClickListener {
+            val height = heightEditText.text.toString().toFloat()
+            val weight = weightEditText.text.toString().toFloat()
 
-                val result = weight / (height /100).pow(2)
+            val result = weight / (height / 100).pow(2)
 
             println("Altura:" + heightEditText.toString())
-                println("Peso" + weightEditText.toString())
+            println("Peso" + weightEditText.toString())
 
-                resultTextView.text = "$result"
+            resultTextView.text = "$result"
 
         }
     }

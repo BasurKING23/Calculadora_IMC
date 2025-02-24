@@ -2,5 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="validar">#95CE63</color>
+    <color name="validar">#5C9230</color>
+    <color name="Background">#8736176F</color>
+    <color name="amarillo">#ECF455</color>
 </resources>
