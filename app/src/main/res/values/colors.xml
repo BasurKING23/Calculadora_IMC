@@ -3,6 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="validar">#5C9230</color>
-    <color name="Background">#8736176F</color>
-    <color name="amarillo">#ECF455</color>
+    <color name="bkCard">#87544571</color>
+    <color name="vcard">#7A7A7A</color>
 </resources>
