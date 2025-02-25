@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="6dp"
         app:cardElevation="8dp">
 
         <LinearLayout
@@ -26,11 +26,13 @@
             android:padding="16dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Altura en (CM)"
                 android:textColor="@color/white"
-                android:textSize="32sp"/>
+                android:textSize="32sp"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/heightTextView"
@@ -39,8 +41,7 @@
                 android:text="170"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="32sp"
-                android:textStyle="bold"/>
+                android:textSize="40sp"/>
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/heightSlider"
@@ -51,7 +52,11 @@
                 android:valueFrom="100"
                 android:valueTo="240"
                 app:labelBehavior="gone"
-                app:tickVisible="false"/>
+                app:tickVisible="true"
+                app:trackColorInactive="@color/sliderinactive"
+                app:trackColorActive="@color/slideractive"
+                app:thumbColor="@color/black"
+                app:thumbTrackGapSize="4dp"/>
 
 
         </LinearLayout>
@@ -63,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="6dp"
         app:cardElevation="8dp">
 
         <LinearLayout
@@ -79,7 +84,9 @@
                 android:layout_margin="16dp"
                 android:text="Peso (kg)"
                 android:textColor="@color/white"
-                android:textSize="32sp"/>
+                android:textSize="32sp"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,25 +99,29 @@
                     android:id="@+id/weightMinusButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_minus"/>
+                    app:icon="@drawable/ic_minus"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/button"/>
 
-                <TextView
-                    android:id="@+id/weightTextView"
+                <EditText
+                    android:id="@+id/weightEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="75"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="32sp"
-                    android:textStyle="bold"/>
+                    android:textSize="40sp"
+                    android:inputType="number"/>
 
                 <Button
                     style="?attr/materialIconButtonFilledStyle"
                     android:id="@+id/weightAddButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_add"/>
+                    app:icon="@drawable/ic_add"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/button"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -125,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/validar"
+        android:backgroundTint="@color/button"
         android:text="Calcular IMC"
         android:textColor="@color/white"/>
 
@@ -139,6 +150,16 @@
         android:text="00.00"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="descripción"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="36sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
+
 </LinearLayout>
