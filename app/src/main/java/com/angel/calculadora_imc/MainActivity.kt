@@ -121,6 +121,7 @@ class MainActivity : AppCompatActivity() {
                 resultTextView.setTextColor(getColor(color))
                 descriptionTextView.setTextColor(getColor(color))
                 descriptionTextView.text = getString(text)
+
         }
     }
 
