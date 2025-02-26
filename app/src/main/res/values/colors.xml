@@ -12,4 +12,5 @@
     <color name="obesidad1">#903D47</color>
     <color name="obesidad2">#D70F0F</color>
     <color name="obesidad3">#FF0000</color>
+    <color name="transp">#00FF0000</color>
 </resources>
