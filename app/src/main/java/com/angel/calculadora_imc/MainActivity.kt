@@ -1,11 +1,14 @@
 package com.angel.calculadora_imc
 
 import android.content.ClipDescription
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,6 +18,12 @@ import java.util.Locale
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val INITIAL_HEIGHT = 170f
+        const val INITIAL_WEIGHT = 75f
+    }
+
+
     // importar //
     lateinit var heightTextView: TextView
     lateinit var heightSlider: Slider
@@ -24,10 +33,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var calButton: Button
     lateinit var resultTextView: TextView
     lateinit var descriptionTextView: TextView
+    lateinit var restar: Button
 
     // importar //
-    var height = 170.0f
-    var weight = 75.0f
+    var height = INITIAL_HEIGHT
+    var weight = INITIAL_WEIGHT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         calButton = findViewById(R.id.calButton)
         resultTextView = findViewById(R.id.resultTextView)
         descriptionTextView = findViewById(R.id.description)
+        restar = findViewById(R.id.restar)
         // fin de llamada a botones//
 
         heightSlider.addOnChangeListener { slider, value, fromUser ->
@@ -58,11 +69,13 @@ class MainActivity : AppCompatActivity() {
         }
         weightAddButton.setOnClickListener {
             weight++
-            weightEditText.setText("$weight")
+            weightEditText.setText("${weight.toInt()}")
+            hideKeyboard()
         }
         weightMinusButton.setOnClickListener {
             weight--
-            weightEditText.setText("$weight")
+            weightEditText.setText("${weight.toInt()}")
+            hideKeyboard()
         }
 
         weightEditText.addTextChangedListener {
@@ -74,55 +87,77 @@ class MainActivity : AppCompatActivity() {
                 if (text.toFloat() < 1) {
                     weightEditText.setText("1")
                 }
+                weight = weightEditText.text.toString().toFloat()
             }
-
         }
-
 
         calButton.setOnClickListener {
+            val result = weight / (height / 100).pow(2)
 
-        }
-            calButton.setOnClickListener {
-                val result = weight / (height / 100).pow(2)
+            resultTextView.text = String.format(Locale.getDefault(), "%.2f", result)
 
-                resultTextView.text = String.format(Locale.getDefault(), "%.2f", result)
-
-                var color = 0
-                var text = 0
+            var color = 0
+            var text = 0
 
 
-                when (result){
-                    in 0f..<18.5f ->{
-                        color = R.color.bajo
-                        text = R.string.bajo
-                    }
-                    in 18.5f..<25f ->{
-                        color = R.color.normal
-                        text = R.string.normal
-                    }
-                    in 25f ..<30f ->{
-                        color = R.color.sobrepeso
-                        text = R.string.sobrepeso
-                    }
-                    in 30f ..<35f ->{
-                        color = R.color.obesidad1
-                        text = R.string.obesidad1
-                    }
-                    in 35f ..<40f ->{
-                        color = R.color.obesidad2
-                        text = R.string.obesidad2
-                    }
-                    in 35f ..<40f ->{
-                        color = R.color.obesidad3
-                        text = R.string.obesidad3
+            when (result) {
+                in 0f..<18.5f -> {
+                    color = R.color.bajo
+                    text = R.string.bajo
                 }
 
+                in 18.5f..<25f -> {
+                    color = R.color.normal
+                    text = R.string.normal
                 }
-                resultTextView.setTextColor(getColor(color))
-                descriptionTextView.setTextColor(getColor(color))
-                descriptionTextView.text = getString(text)
 
+                in 25f..<30f -> {
+                    color = R.color.sobrepeso
+                    text = R.string.sobrepeso
+                }
+
+                in 30f..<35f -> {
+                    color = R.color.obesidad1
+                    text = R.string.obesidad1
+                }
+
+                in 35f..<40f -> {
+                    color = R.color.obesidad2
+                    text = R.string.obesidad2
+                }
+
+                in 35f..<40f -> {
+                    color = R.color.obesidad3
+                    text = R.string.obesidad3
+                }
+
+            }
+            resultTextView.setTextColor(getColor(color))
+            descriptionTextView.setTextColor(getColor(color))
+            descriptionTextView.text = getString(text)
+
+
+            hideKeyboard()
         }
+
+        restar.setOnClickListener {
+            heightSlider.value = INITIAL_HEIGHT
+            weightEditText.setText("$INITIAL_WEIGHT")
+
+            AlertDialog.Builder(this)
+                .setTitle("se ha reiniciado")
+                .setMessage("Se ha colocado los valores por defecto")
+                .setPositiveButton(android.R.string.yes, null)
+                .setNegativeButton(android.R.string.no, null)
+                .show()
+        }
+
     }
 
+    fun hideKeyboard() {
+        this.currentFocus?.let { view ->
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
 }

@@ -5,11 +5,11 @@
     <string name="label_weight">weight (kg)</string>
     <string name="label_buttom">buttom (cm)</string>
     <string name="calButtom">Calcular IMC</string>
-    <string name="bajo">bajo</string>
-    <string name="normal">normal</string>
-    <string name="sobrepeso">sobrepeso</string>
-    <string name="obesidad1">obesidad1</string>
-    <string name="obesidad2">obesidad2</string>
-    <string name="obesidad3">obesidad3</string>
+    <string name="bajo">Bajo</string>
+    <string name="normal">Normal</string>
+    <string name="sobrepeso">Sobrepeso</string>
+    <string name="obesidad1">Obesidad1</string>
+    <string name="obesidad2">Obesidad2</string>
+    <string name="obesidad3">Obesidad3</string>
 
 </resources>
