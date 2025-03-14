@@ -1,5 +1,6 @@
 package com.angel.calculadora_imc
 
+import android.annotation.SuppressLint
 import android.content.ClipDescription
 import android.content.Context
 import android.os.Bundle
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val INITIAL_HEIGHT = 170f
         const val INITIAL_WEIGHT = 75f
+        const val INITIAL_DESCRIPTION = ("Description")
     }
 
 
@@ -38,7 +40,9 @@ class MainActivity : AppCompatActivity() {
     // importar //
     var height = INITIAL_HEIGHT
     var weight = INITIAL_WEIGHT
+    var description = INITIAL_DESCRIPTION
 
+    @SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -137,12 +141,20 @@ class MainActivity : AppCompatActivity() {
             descriptionTextView.text = getString(text)
 
 
+
+
             hideKeyboard()
         }
 
         restar.setOnClickListener {
             heightSlider.value = INITIAL_HEIGHT
             weightEditText.setText("$INITIAL_WEIGHT")
+            descriptionTextView.text = INITIAL_DESCRIPTION
+            resultTextView.setTextColor(getColor(R.color.white))
+            resultTextView.text = "00.00"
+            descriptionTextView.setTextColor(getColor(R.color.white))
+
+
 
             AlertDialog.Builder(this)
                 .setTitle("se ha reiniciado")
