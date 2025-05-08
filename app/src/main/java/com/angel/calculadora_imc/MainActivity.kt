@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             var color = 0
             var text = 0
 
-
+        // hola
             when (result) {
                 in 0f..<18.5f -> {
                     color = R.color.bajo
